@@ -1,8 +1,11 @@
-import {defineCliConfig} from 'sanity/cli'
+import { defineCliConfig } from "sanity/cli";
+
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID!;
+const dataset = process.env.NEXT_PUBLIC_DATASET!;
 
 export default defineCliConfig({
   api: {
-    projectId: 'nxzvsag2',
-    dataset: 'production'
-  }
-})
+    projectId,
+    dataset,
+  },
+});
