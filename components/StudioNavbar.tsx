@@ -8,13 +8,13 @@ const _StudioNavbar = (props: any) => {
 
     return (
         <nav>
-            <div className="flex items-center justify-between px-5 py-3">
+            <div className="flex items-center justify-between px-5 py-2">
                 <Link href="/" className="text-white font-semibold flex items-center" >
                     <ArrowUturnLeftIcon className="h-6 w-6 text-[#ff8a75] mr-2" />
                     Go to Website
                 </Link>
 
-                <div className="hidden text-center sm:flex p-2 rounded-lg justify-center border-2 border-blue-300">
+                <div className="hidden text-center sm:flex px-2 py-1 rounded-lg justify-center border-2 border-blue-300">
 
                     <h1 className="font-bold text-white">
                         Lets build together

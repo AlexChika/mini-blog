@@ -3,6 +3,7 @@ import { groq } from "next-sanity";
 import { client } from "../../lib/sanity.client";
 import PreviewSuspense from "../../components/PreviewSuspense";
 import BlogList from "../../components/BlogList";
+import PreviewBlogList from "../../components/PreviewBlogList";
 
 
 const query = groq`*[_type == "post"]{
@@ -18,6 +19,7 @@ const HomePage = async () => {
                 <p className="text-center text-lg animate-pulse text-primary ">Loading Preview Data...</p>
             </div>
         } >
+            <PreviewBlogList query={query} />
         </PreviewSuspense>)
     }
 
@@ -25,6 +27,7 @@ const HomePage = async () => {
 
     return (
         <BlogList posts={posts} />
+
     )
 }
 
