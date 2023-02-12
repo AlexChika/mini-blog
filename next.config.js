@@ -4,4 +4,14 @@ module.exports = {
   experimental: {
     appDir: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.postimg.cc",
+        port: "",
+        pathname: "/QMtPzJth/alex.jpg",
+      },
+    ],
+  },
 };
