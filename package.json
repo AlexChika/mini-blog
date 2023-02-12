@@ -1,5 +1,5 @@
 {
-  "name": "sanity-blog",
+  "name": "dev-arise-sanity",
   "private": true,
   "scripts": {
     "dev": "next dev",

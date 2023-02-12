@@ -9,7 +9,7 @@ import urlFor from "../lib/urlFor";
 const Blog = ({ route, post }: { route: string, post: Post }) => {
     return (
         <Link href={route}>
-            <article key={post._id} className="group cursor-pointer flex flex-col bg-white drop-shadow-lg group">
+            <article className="group cursor-pointer flex flex-col bg-white drop-shadow-lg group">
                 <div className="relative w-full h-80 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out">
 
                     <Image className="object-cover object-center lg:object-center" src={urlFor(post.mainImage).url()} alt={post.author.name} fill />
@@ -30,8 +30,8 @@ const Blog = ({ route, post }: { route: string, post: Post }) => {
                         {/* categoriess */}
                         <div className="flex flex-col md:flex-row gap-y-2 md:gap-x-2 items-center">
                             {
-                                post.categories.slice(0, 2).map((category) => {
-                                    return <div className="bg-[#ff8a75] text-center text-black px-3 py-1 rounded-full text-sm font-semibold">
+                                post.categories.slice(0, 2).map((category, i) => {
+                                    return <div key={i} className="bg-[#ff8a75] text-center text-black px-3 py-1 rounded-full text-sm font-semibold">
                                         <p>{category.title}</p>
                                     </div>
                                 })
