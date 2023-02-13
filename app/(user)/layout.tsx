@@ -7,9 +7,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html>
+    <html className="bg-white">
       <head />
-      <body className="bg-neutral-100 max-w-7xl mx-auto">
+      <body className="bg-[rgb(253,253,253)] max-w-7xl mx-auto">
         <Header />
         <Banner />
         {children}

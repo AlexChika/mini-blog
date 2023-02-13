@@ -4,7 +4,7 @@ import { CodeBracketIcon, ComputerDesktopIcon } from "@heroicons/react/24/solid"
 
 const Header = () => {
     return (
-        <header className="flex items-center justify-between space-x-2 font-bold px-3 sm:px-10 py-2 bg-white border-b border-b-gray-200">
+        <header className="flex items-center justify-between space-x-2 font-bold px-3 sm:px-10 py-2 drop-shadow-sm">
             <div className="flex items-center space-x-2">
                 <Link href="/">
                     <Image
@@ -15,7 +15,7 @@ const Header = () => {
                         alt="alex chika picture as logo" />
                 </Link>
 
-                <h1 className="italic py-2 px-2 bg-slate-50 flex">
+                <h1 className="italic py-2 px-2 flex">
                     <span className="text-xs">DEV ARISE</span>
 
                     <span className="flex items-center ml-1">

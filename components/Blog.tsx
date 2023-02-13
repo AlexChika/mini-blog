@@ -16,7 +16,7 @@ const Blog = ({ route, post }: { route: string, post: Post }) => {
 
 
                     {/* overlay on photo */}
-                    <div className="absolute bottom-0 w-full bg-opacity-20 bg-black drop-shadow-lg rounded text-white p-3 justify-between flex">
+                    <div className="absolute bottom-0 w-full bg-opacity-40 bg-black drop-shadow-lg rounded text-white p-3 justify-between flex">
                         {/* text - wrappers */}
                         <div className="self-end">
                             <p className="font-bold">{post.title}</p>
