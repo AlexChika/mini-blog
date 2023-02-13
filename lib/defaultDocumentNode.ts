@@ -7,7 +7,7 @@ const url =
     : "http://localhost:3000/api/preview";
 
 // Import this into the deskTool() plugin
-export const defaultDocumentNode: DefaultDocumentNodeResolver = (
+export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
   { schemaType }
 ) => {
@@ -19,9 +19,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
         S.view
           .component(Iframe)
           .options({
-            url: `${
-              process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost::3000"
-            }/api/preview`,
+            url: url,
             defaultSize: `desktop`, // default `desktop`
             reload: {
               button: true, // default `undefined`

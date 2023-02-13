@@ -27,7 +27,6 @@ const HomePage = async () => {
 
     return (
         <BlogList posts={posts} />
-
     )
 }
 
