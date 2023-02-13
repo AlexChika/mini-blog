@@ -13,4 +13,15 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
+  .red {
+    border: 2px solid red;
+  }
+
+  .blue {
+    border: 2px solid blue;
+  }
+
+  .green {
+    border: 2px solid green;
+  }
 }
