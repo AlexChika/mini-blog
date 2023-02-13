@@ -12,7 +12,7 @@ const Blog = ({ route, post }: { route: string, post: Post }) => {
             <article className="group cursor-pointer flex flex-col bg-white group">
                 <div className="relative w-full h-80 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out">
 
-                    <Image className="object-cover object-center lg:object-center" src={urlFor(post.mainImage).url()} alt={post.author.name} fill />
+                    <Image className="object-cover object-center" src={urlFor(post.mainImage).url()} alt={post.author.name} fill />
 
 
                     {/* overlay on photo */}

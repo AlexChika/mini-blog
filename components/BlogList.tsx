@@ -7,7 +7,7 @@ type Props = {
 const BlogList = ({ posts }: Props) => {
     return (
         <section >
-            <div className="mb-10 w-[90%] bg-transparent py-2 max-w-[500px] mx-auto flex items-center justify-center group relative">
+            <div className="mb-10 w-full bg-transparent py-2 mx-auto flex items-center justify-center group relative">
 
                 {
                     [5, 7, 9, 11, 13, 15, 17].map((s, ind) => {
