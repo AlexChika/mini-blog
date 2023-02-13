@@ -4,7 +4,7 @@ const Banner = () => {
     return (
         <div className="flex flex-col items-center text-center lg:flex-row lg:space-x-5 justify-between font-bold px-3 sm:px-10 py-3 sm:py-5 mb-10 border-y border-y-[#ff8a75] bg-white mt-7">
             <div>
-                <h1 className="flex justify-center lg:justify-start items-center text-center text-[2rem] sm:text-7xl">Devs
+                <h1 className="flex justify-center lg:justify-start items-center text-center text-[2rem] sm:text-7xl">Dev
                     <span className="flex items-center mx-2 sm:mx-3">
                         <ComputerDesktopIcon className="h-[2rem] w-[2rem] sm:h-[3.5rem] sm:w-[3.5rem] text-primary" />
                     </span>
