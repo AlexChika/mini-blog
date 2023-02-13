@@ -9,7 +9,7 @@ import urlFor from "../lib/urlFor";
 const Blog = ({ route, post }: { route: string, post: Post }) => {
     return (
         <Link href={route}>
-            <article className="group cursor-pointer flex flex-col bg-white group">
+            <article className="group cursor-pointer flex flex-col bg-white group drop-shadow-md">
                 <div className="relative w-full h-80 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out">
 
                     <Image className="object-cover object-center" src={urlFor(post.mainImage).url()} alt={post.author.name} fill />
