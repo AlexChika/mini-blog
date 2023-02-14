@@ -8,6 +8,7 @@ import PostBanner from '../../../../components/PostBanner'
 import { RichTextComponents } from '../../../../components/RichTextComponent'
 import Blog from '../../../../components/Blog'
 import Comments from '../../../../components/PostComments'
+import PostShare from '../../../../components/PostShare'
 
 type Props = {
     params: {
@@ -57,12 +58,18 @@ async function Post({ params: { slug } }: Props) {
 
             <div className='flex flex-col min-[800px]:flex-row justify-between gap-10 w-full px-2 sm:px-5'>
 
-                <article className='mt-7 pt-5 pl-3 sm:pl-5 min-w-[384px] min-[800px]:w-[60%] bg-white'>
+                <article className='mt-7 pt-5 min-[800px]:pl-5  min-[800px]:w-[60%] w-full bg-white'>
                     <PortableText value={post.body} components={RichTextComponents} />
                 </article>
 
-                <section className='min-[800px]:max-w-[500px] min-[800px]:w-[40%] mt-7 pr-3 sm:pr-5'>
-                    <Comments params={{ slug, id: post._id, body: post.title }} />
+                <section className='min-[800px]:max-w-[500px] min-[800px]:w-[40%] mt-7 min-[800px]:pr-5'>
+
+                    <PostShare params={{ body: post.title, slug }} />
+
+                    <Comments params={{ id: post._id, }} />
+
+                    {/* Recent Posts */}
+                    <h2 className='text-2xl font-bold text-center bg-gray-900 bg-opacity-20 p-5 mb-9'>Recent Posts</h2>
 
                     {
                         posts.map((post) => {
