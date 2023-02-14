@@ -15,18 +15,20 @@ const Header = () => {
                         alt="alex chika picture as logo" />
                 </Link>
 
-                <h1 className="italic py-2 px-1 flex">
-                    <span className="text-xs sm:text-sm">DEV ARISE</span>
+                <Link href="/">
+                    <h1 className="italic py-2 px-1 flex">
+                        <span className="text-xs sm:text-sm">DEV ARISE</span>
 
-                    <span className="flex items-center ml-1">
-                        {
-                            [5, 7, 9].map((s, ind) => {
-                                return <span style={{ width: `${s}px`, height: `${s}px`, }} className={`block group-hover:bg-white transition-colors duration-200 ease-out bg-[#ff8a75] rounded-full mr-1`} key={ind}></span>
-                            })
-                        }
-                    </span>
+                        <span className="flex items-center ml-1">
+                            {
+                                [5, 7, 9].map((s, ind) => {
+                                    return <span style={{ width: `${s}px`, height: `${s}px`, }} className={`block group-hover:bg-white transition-colors duration-200 ease-out bg-[#ff8a75] rounded-full mr-1`} key={ind}></span>
+                                })
+                            }
+                        </span>
 
-                </h1>
+                    </h1>
+                </Link>
             </div>
 
             <div>

@@ -14,6 +14,22 @@ type Props = {
     }
 }
 
+export const revalidate = 60
+
+export async function generateStaticParams() {
+    const query = groq`*[_type == "post"]{
+        slug
+    }`
+
+    const slugs: { slug: Slug }[] = await client.fetch(query);
+    return slugs.map((slug) => {
+
+        return {
+            slug: slug.slug.current
+        }
+    })
+}
+
 async function Post({ params: { slug } }: Props) {
     const q = groq`
         *[_type == "post" && slug.current == $slug][0]{
@@ -38,15 +54,16 @@ async function Post({ params: { slug } }: Props) {
         <main className='pb-28'>
             <PostBanner post={post} />
 
-            <div className='flex justify-between gap-5 w-full'>
-                <article className='px-5 sm:px-10 min-w-[384px]'>
+            <div className='flex flex-col min-[800px]:flex-row justify-between gap-10 w-full px-2 sm:px-5'>
+
+                <article className='mt-7 pt-5 pl-3 sm:pl-5 min-w-[384px] min-[800px]:w-[60%] bg-white'>
                     <PortableText value={post.body} components={RichTextComponents} />
                 </article>
 
-                <section className='max-w-[500px]'>
+                <section className='min-[800px]:max-w-[500px] min-[800px]:w-[40%] mt-7 pr-3 sm:pr-5'>
                     {
                         posts.map((post) => {
-                            return <div className='mb-7' key={post._id}>
+                            return <div className='mb-10' key={post._id}>
                                 <Blog route={`/post/${post.slug.current}`} post={post} />
                             </div>
                         })

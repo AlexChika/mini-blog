@@ -26,7 +26,7 @@ export const RichTextComponents = {
 
     block: {
         h1: ({ children }: any) => (
-            <h1 className="text-4xl py-5 mt-9 font-bold">{children}</h1>
+            <h1 className="text-4xl pb-7 font-bold">{children}</h1>
         ),
 
         h2: ({ children }: any) => (
