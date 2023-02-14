@@ -7,6 +7,7 @@ import urlFor from '../../../../lib/urlFor'
 import PostBanner from '../../../../components/PostBanner'
 import { RichTextComponents } from '../../../../components/RichTextComponent'
 import Blog from '../../../../components/Blog'
+import Comments from '../../../../components/PostComments'
 
 type Props = {
     params: {
@@ -61,6 +62,8 @@ async function Post({ params: { slug } }: Props) {
                 </article>
 
                 <section className='min-[800px]:max-w-[500px] min-[800px]:w-[40%] mt-7 pr-3 sm:pr-5'>
+                    <Comments params={{ slug, id: post._id, body: post.title }} />
+
                     {
                         posts.map((post) => {
                             return <div className='mb-10' key={post._id}>
