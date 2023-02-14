@@ -1,8 +1,8 @@
 "use client"
 
 
-import { UserIcon } from '@heroicons/react/24/solid'
-import { useEffect, useState, useRef } from 'react'
+import { HandThumbUpIcon, UserIcon } from '@heroicons/react/24/solid'
+import { useEffect, useState } from 'react'
 import getRandomColor from '../lib/randomColors'
 
 
@@ -15,12 +15,11 @@ const Comments = ({ params }: { params: Props }) => {
 
     return (
         <div className='my-12'>
-            <h2 className='text-2xl font-bold text-center bg-gray-900 bg-opacity-20 p-5'>Comment</h2>
+            <h2 className='text-2xl font-bold text-center bg-[#ff8a75]  bg-opacity-20 p-5'>Comment</h2>
 
 
             {/* comment form */}
-            <form className='mt-9'>
-
+            <div className='mt-9'>
                 <div className='flex mb-5'>
                     <label className='w-[100px] bg-gray-900 bg-opacity-20 font-medium py-2 px-3' htmlFor="name">Name</label>
 
@@ -33,14 +32,20 @@ const Comments = ({ params }: { params: Props }) => {
                     <textarea className='flex-1 block h-20 resize-none p-2 placeholder:text-center outline-none px-2 border border-gray-100' id='name' />
                 </div>
 
-                <button className='text-white bg-[#ff8a75] py-2 w-full text-center font-bold'>Submit</button>
+                <div className='flex'>
+                    <button className='flex-[0.5] text-white bg-[#ff8a75] h-9 w-full text-center font-bold'>Submit</button>
 
-            </form>
+                    <button className='h-9 text-center flex-[0.5] bg-blue-300 flex justify-center'>
+                        <HandThumbUpIcon className=' h-8 w-8 text-white' />
+                    </button>
+                </div>
+
+            </div>
 
 
             {/* comment section */}
             <section className='mt-12'>
-                <h2 className='text-2xl font-bold text-center bg-gray-900 bg-opacity-20 p-5'>Comment Section</h2>
+                <h2 className='text-2xl font-bold text-center bg-[#ff8a75]  bg-opacity-20 p-5'>Comment Section</h2>
 
                 {/* spacing */}
                 <div aria-hidden className='h-6'></div>
@@ -60,6 +65,7 @@ const Comments = ({ params }: { params: Props }) => {
 }
 
 function Comment({ id }: { id: number }) {
+    const [seeMore, setSeeMore] = useState(false);
     let col = getRandomColor()
 
     useEffect(() => {
@@ -81,7 +87,7 @@ function Comment({ id }: { id: number }) {
             <div className={`before:content-[''] before:absolute before:w-[2px] before:left-[1rem] before:h-full before:top-0 before:bg-[var(--bg-color)]`}>
                 <p className='font-bold text-lg ml-3 truncate italic'>{"Name here"}</p>
 
-                <p className='ml-3 text-gray-500 line-clamp-2'>
+                <p className={`ml-3 text-gray-500 ${seeMore ? "" : "line-clamp-2"}`}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, quam?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, quam?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, quam?
@@ -91,7 +97,7 @@ function Comment({ id }: { id: number }) {
                 <div className='flex space-x-2 justify-center pb-5'>
                     <button className='font-bold text-neutral-400 cursor-pointer'>Reply</button>
                     <button className='font-bold text-neutral-400 cursor-pointer'>Replies</button>
-                    <button className='font-bold text-neutral-400 cursor-pointer'>See all</button>
+                    <button onClick={() => setSeeMore(!seeMore)} className='font-bold text-neutral-400 cursor-pointer'>See all</button>
                 </div>
             </div>
 

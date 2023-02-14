@@ -69,7 +69,7 @@ async function Post({ params: { slug } }: Props) {
                     <Comments params={{ id: post._id, }} />
 
                     {/* Recent Posts */}
-                    <h2 className='text-2xl font-bold text-center bg-gray-900 bg-opacity-20 p-5 mb-9'>Recent Posts</h2>
+                    <h2 className='text-2xl font-bold text-center bg-[#ff8a75]  bg-opacity-20 p-5 mb-9'>Recent Posts</h2>
 
                     {
                         posts.map((post) => {

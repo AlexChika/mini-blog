@@ -43,6 +43,10 @@ const PostBanner = ({ post }: { post: Post }) => {
                     <div>
                         <h2 className='max-w-4xl italic py-10'>{post.description}</h2>
                         <div className='flex items-center justify-end mt-auto space-x-2'>
+                            <p className="text-gray-800 bg-white px-3 py-1 rounded-full text-sm font-semibold mt-4">
+                                {"200 likes"}
+                            </p>
+
                             {
                                 post.categories.map((category) => {
                                     return <p key={category._id} className="bg-gray-800 text-white px-3 py-1 rounded-full text-sm font-semibold mt-4">
