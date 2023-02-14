@@ -2,8 +2,10 @@
 
 
 import { HandThumbUpIcon, UserIcon } from '@heroicons/react/24/solid'
+import { groq } from 'next-sanity'
 import { useEffect, useState } from 'react'
 import getRandomColor from '../lib/randomColors'
+import { client } from '../lib/sanity.client'
 
 
 type Props = {
@@ -107,6 +109,22 @@ const CommentComponent = ({ params }: { params: Props }) => {
     const { id: postId, comments } = params
     console.log(comments);
 
+    async function handleLikePost() {
+
+        const query = groq`*[_type == "post" && _id == postId]{
+            likes
+        }`
+
+        try {
+            const like = await client.fetch(query);
+            const result = await client.patch(postId).set({ likes: like + 1 })
+            console.log(result);
+            alert(result)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
 
     return (
         <div className='my-12'>
@@ -130,7 +148,7 @@ const CommentComponent = ({ params }: { params: Props }) => {
                 <div className='flex'>
                     <button className='flex-[0.5] text-white bg-[#ff8a75] h-9 w-full text-center font-bold'>Submit</button>
 
-                    <button className='h-9 text-center flex-[0.5] bg-blue-300 flex justify-center'>
+                    <button onClick={handleLikePost} className='h-9 text-center flex-[0.5] bg-blue-300 flex justify-center'>
                         <HandThumbUpIcon className=' h-8 w-8 text-white' />
                     </button>
                 </div>
