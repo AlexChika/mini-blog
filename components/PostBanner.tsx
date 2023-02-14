@@ -1,8 +1,12 @@
+// "use client"
+import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
-import React from 'react'
+// import {useState,useEffect} from 'react'
 import urlFor from '../lib/urlFor'
+import { RichTextComponents } from './RichTextComponent'
 
 const PostBanner = ({ post }: { post: Post }) => {
+
     return (
         <section className='space-y-2 border border-[#ff8a75] text-white'>
 
@@ -35,7 +39,7 @@ const PostBanner = ({ post }: { post: Post }) => {
 
                             <div className='w-64'>
                                 <h3 className='text-lg font-bold'>{post.author.name}</h3>
-                                {/*todo authur bio <div></div> */}
+                                <PortableText value={post.author.bio} components={RichTextComponents} />
                             </div>
                         </div>
                     </div>
@@ -44,7 +48,7 @@ const PostBanner = ({ post }: { post: Post }) => {
                         <h2 className='max-w-4xl italic py-10'>{post.description}</h2>
                         <div className='flex items-center justify-end mt-auto space-x-2'>
                             <p className="text-gray-800 bg-white px-3 py-1 rounded-full text-sm font-semibold mt-4">
-                                {"200 likes"}
+                                {post.likes}  Likes
                             </p>
 
                             {
@@ -65,4 +69,4 @@ const PostBanner = ({ post }: { post: Post }) => {
     )
 }
 
-export default PostBanner
+export default PostBanner;

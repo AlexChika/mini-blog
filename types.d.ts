@@ -14,6 +14,8 @@ interface Post extends Base {
   slug: SLug;
   title: string;
   description: string;
+  likes: number;
+  comments: Comment[];
 }
 
 interface Author extends Base {
@@ -21,6 +23,18 @@ interface Author extends Base {
   image: Image;
   name: string;
   slug: Slug;
+}
+interface SubComment extends Base {
+  name: string;
+  text: string;
+  publishedAt: string;
+}
+
+interface Comment extends Base {
+  name: string;
+  text: string;
+  subcomments: SubComment[];
+  publishedAt: string;
 }
 
 interface Category extends Base {

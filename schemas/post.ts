@@ -40,16 +40,31 @@ export default defineType({
       },
     }),
     defineField({
+      name: "comments",
+      title: "Post Comments",
+      type: "array",
+      of: [{ type: "reference", to: { type: "comment" } }],
+    }),
+
+    defineField({
+      name: "likes",
+      title: "Likes",
+      type: "number",
+    }),
+
+    defineField({
       name: "categories",
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: { type: "category" } }],
     }),
+
     defineField({
       name: "publishedAt",
       title: "Published at",
       type: "datetime",
     }),
+
     defineField({
       name: "body",
       title: "Body",

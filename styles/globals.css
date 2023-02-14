@@ -17,8 +17,4 @@
   .box-shadow {
     box-shadow: 1px 1px 5px rgb(247, 247, 247), -1px -1px 5px rgb(247, 247, 247);
   }
-
-  .red {
-    border: 2px solid red;
-  }
 }

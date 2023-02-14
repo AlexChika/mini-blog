@@ -1,13 +1,10 @@
 import { groq } from 'next-sanity'
-import Image from 'next/image'
-import React from 'react'
 import { PortableText } from '@portabletext/react'
 import { client } from '../../../../lib/sanity.client'
-import urlFor from '../../../../lib/urlFor'
 import PostBanner from '../../../../components/PostBanner'
 import { RichTextComponents } from '../../../../components/RichTextComponent'
 import Blog from '../../../../components/Blog'
-import Comments from '../../../../components/PostComments'
+import CommentComponent from '../../../../components/PostComments'
 import PostShare from '../../../../components/PostShare'
 
 type Props = {
@@ -37,7 +34,11 @@ async function Post({ params: { slug } }: Props) {
         *[_type == "post" && slug.current == $slug][0]{
             ...,
             author->,
-            categories[]->
+            categories[]->,
+            comments[]->{
+                ...,
+             subcomments[]->
+            }
         }
     `
 
@@ -50,7 +51,9 @@ async function Post({ params: { slug } }: Props) {
     `
 
     const post: Post = await client.fetch(q, { slug });
-    const posts: Post[] = await client.fetch(query)
+    const posts: Post[] = await client.fetch(query);
+    console.log(post.comments);
+
 
     return (
         <main className='pb-28'>
@@ -66,7 +69,7 @@ async function Post({ params: { slug } }: Props) {
 
                     <PostShare params={{ body: post.title, slug }} />
 
-                    <Comments params={{ id: post._id, }} />
+                    <CommentComponent params={{ id: post._id, comments: post.comments }} />
 
                     {/* Recent Posts */}
                     <h2 className='text-2xl font-bold text-center bg-[#ff8a75]  bg-opacity-20 p-5 mb-9'>Recent Posts</h2>

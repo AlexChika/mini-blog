@@ -8,10 +8,105 @@ import getRandomColor from '../lib/randomColors'
 
 type Props = {
     id: string,
+    comments: Comment[]
 }
 
-const Comments = ({ params }: { params: Props }) => {
-    const { id } = params
+
+type UserCommentProp = {
+    id: string,
+    name: string,
+    text: string,
+    publishedAt: string
+}
+
+const UserComment = ({ params }: { params: UserCommentProp }) => {
+    const { id, name, text, publishedAt } = params
+    const [seeMore, setSeeMore] = useState(false);
+
+
+    let col = getRandomColor()
+    useEffect(() => {
+        try {
+            const wrapper: any = document.querySelector(`[data-id="${id}"]`);
+            wrapper.style.setProperty("--bg-color", col)
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, [])
+
+
+    return <div className='px-3 py-1'>
+        <div className='flex relative'>
+            <div style={{ background: col }} className='rounded-full h-8 flex  items-center justify-center min-w-[2rem] z-10'>
+                <UserIcon className='h-6 w-6 text-white' />
+            </div>
+
+            <div>
+                <p className='font-bold text-lg ml-3 truncate italic'>{name}</p>
+
+                <p className={`ml-3 text-gray-500 ${true ? "" : ""}`}>
+                    <span className={seeMore ? "" : "line-clamp-2"}>{text}</span>
+                    <button className={seeMore ? "hidden" : "inline"} onClick={() => setSeeMore(!seeMore)}>
+                        {text.length > 50 && "More"}
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+}
+
+const Comments = ({ comment }: { comment: Comment }) => {
+    const { subcomments, text, name, publishedAt, _id: id }: Comment = comment;
+    const [viewReplies, setViewReplies] = useState(0);
+    const [remainingReplies, setRemainingReplies] = useState(subcomments.length);
+
+
+    function handleViewReply() {
+        let replies = viewReplies;
+        replies = Math.min(viewReplies + 3, subcomments.length);
+        setViewReplies(replies);
+    }
+
+
+    useEffect(() => {
+        let remaining = subcomments.length - viewReplies;
+        setRemainingReplies(remaining);
+    }, [viewReplies, subcomments]);
+
+
+    return <div className='bg-white'>
+        <UserComment params={{ text, name, publishedAt, id }} />
+        {  /* ----------- comment buttons ----------- */}
+        <div className='flex space-x-3 justify-center pb-5 -mt-3'>
+            <button className='font-bold text-neutral-400 cursor-pointer'>Reply</button>
+            <button onClick={handleViewReply} className='font-bold text-neutral-400 cursor-pointer'> {`Replies (${remainingReplies})`}</button>
+        </div>
+
+
+        {subcomments.length > 0 && (
+            <div className="w-[85%] ml-auto border-l">
+                {/* replies */}
+                {viewReplies > 0 && (
+                    <div>
+                        {subcomments.slice(0, viewReplies).map((subcomment, ind) => {
+                            const { text, name, _id: id, publishedAt } = subcomment;
+                            return <UserComment key={ind} params={{ text, name, publishedAt, id }} />;
+                        })}
+                    </div>
+                )}
+            </div>
+        )}
+
+
+
+    </div>
+}
+
+const CommentComponent = ({ params }: { params: Props }) => {
+    const { id: postId, comments } = params
+    console.log(comments);
+
 
     return (
         <div className='my-12'>
@@ -21,13 +116,13 @@ const Comments = ({ params }: { params: Props }) => {
             {/* comment form */}
             <div className='mt-9'>
                 <div className='flex mb-5'>
-                    <label className='w-[100px] bg-gray-900 bg-opacity-20 font-medium py-2 px-3' htmlFor="name">Name</label>
+                    <label className='w-[100px] bg-neutral-400 bg-opacity-20 font-medium py-2 px-3' htmlFor="name">Name</label>
 
                     <input className='flex-1 placeholder:text-center outline-none px-2 border border-gray-100' id='name' placeholder='Enter your name' />
                 </div>
 
                 <div className='flex mb-5'>
-                    <label className='w-[100px] bg-gray-900 bg-opacity-20 font-medium py-2 px-3 flex items-center' htmlFor="name">Comment</label>
+                    <label className='w-[100px] bg-neutral-400 bg-opacity-20 font-medium py-2 px-3 flex items-center' htmlFor="name">Comment</label>
 
                     <textarea className='flex-1 block h-20 resize-none p-2 placeholder:text-center outline-none px-2 border border-gray-100' id='name' />
                 </div>
@@ -50,59 +145,16 @@ const Comments = ({ params }: { params: Props }) => {
                 {/* spacing */}
                 <div aria-hidden className='h-6'></div>
 
-
-
                 <div className='max-h-[80vh] overflow-y-auto mb-5'>
-                    {[1, 2, 3, 4].map((x, index) => {
-                        return <Comment key={x} id={index} />
+                    {comments.map((comment, index) => {
+                        return <Comments key={comment._id} comment={comment} />
                     })}
                 </div>
             </section>
-
         </div>
 
     )
 }
 
-function Comment({ id }: { id: number }) {
-    const [seeMore, setSeeMore] = useState(false);
-    let col = getRandomColor()
 
-    useEffect(() => {
-        try {
-            const wrapper: any = document.querySelector(`[data-id="${id}"]`);
-            wrapper.style.setProperty("--bg-color", col)
-
-        } catch (error) {
-            console.log(error);
-        }
-    }, [])
-
-    return <div className='px-3 bg-white'>
-        <div data-id={id} className='flex relative'>
-            <div className='rounded-full h-8 flex bg-[var(--bg-color)] items-center justify-center min-w-[2rem] z-10'>
-                <UserIcon className='h-6 w-6 text-white' />
-            </div>
-
-            <div className={`before:content-[''] before:absolute before:w-[2px] before:left-[1rem] before:h-full before:top-0 before:bg-[var(--bg-color)]`}>
-                <p className='font-bold text-lg ml-3 truncate italic'>{"Name here"}</p>
-
-                <p className={`ml-3 text-gray-500 ${seeMore ? "" : "line-clamp-2"}`}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, quam?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, quam?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, quam?
-                </p>
-
-                {/* comment buttons */}
-                <div className='flex space-x-2 justify-center pb-5'>
-                    <button className='font-bold text-neutral-400 cursor-pointer'>Reply</button>
-                    <button className='font-bold text-neutral-400 cursor-pointer'>Replies</button>
-                    <button onClick={() => setSeeMore(!seeMore)} className='font-bold text-neutral-400 cursor-pointer'>See all</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-}
-
-export default Comments
+export default CommentComponent;

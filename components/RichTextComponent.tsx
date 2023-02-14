@@ -57,7 +57,9 @@ export const RichTextComponents = {
                     {children}
                 </Link>
             )
-        }
+        },
+        em: ({ children }: any) => <em className="font-semibold italic">{children}</em>,
+
     }
 
 
