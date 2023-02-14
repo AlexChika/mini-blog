@@ -15,7 +15,7 @@ const Header = () => {
                         alt="alex chika picture as logo" />
                 </Link>
 
-                <h1 className="italic py-2 px-2 flex">
+                <h1 className="italic py-2 px-1 flex">
                     <span className="text-xs sm:text-sm">DEV ARISE</span>
 
                     <span className="flex items-center ml-1">
