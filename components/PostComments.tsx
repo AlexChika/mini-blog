@@ -24,9 +24,8 @@ type UserCommentProp = {
 const UserComment = ({ params }: { params: UserCommentProp }) => {
     const { id, name, text, publishedAt } = params
     const [seeMore, setSeeMore] = useState(false);
-
-
     let col = getRandomColor()
+
     useEffect(() => {
         try {
             const wrapper: any = document.querySelector(`[data-id="${id}"]`);
@@ -61,10 +60,12 @@ const UserComment = ({ params }: { params: UserCommentProp }) => {
 const Comments = ({ comment }: { comment: Comment }) => {
     const { subcomments, text, name, publishedAt, _id: id }: Comment = comment;
     const [viewReplies, setViewReplies] = useState(0);
-    const [remainingReplies, setRemainingReplies] = useState(subcomments.length);
+    const [remainingReplies, setRemainingReplies] = useState(subcomments ? subcomments.length : 0);
 
 
     function handleViewReply() {
+        if (!subcomments) return
+
         let replies = viewReplies;
         replies = Math.min(viewReplies + 3, subcomments.length);
         setViewReplies(replies);
@@ -72,6 +73,8 @@ const Comments = ({ comment }: { comment: Comment }) => {
 
 
     useEffect(() => {
+        if (!subcomments) return
+
         let remaining = subcomments.length - viewReplies;
         setRemainingReplies(remaining);
     }, [viewReplies, subcomments]);
@@ -86,7 +89,7 @@ const Comments = ({ comment }: { comment: Comment }) => {
         </div>
 
 
-        {subcomments.length > 0 && (
+        {subcomments && subcomments.length > 0 && (
             <div className="w-[85%] ml-auto border-l">
                 {/* replies */}
                 {viewReplies > 0 && (
@@ -107,20 +110,20 @@ const Comments = ({ comment }: { comment: Comment }) => {
 
 const CommentComponent = ({ params }: { params: Props }) => {
     const { id: postId, comments } = params
-    console.log(comments);
 
     async function handleLikePost() {
-        alert("post liked")
-
-        const query = groq`*[_type == "post" && _id == postId]{
-            likes
+        const query = groq`*[_type == "post" && _id == $postId]{
+            likes,
         }`
-
         try {
-            const like = await client.fetch(query);
-            client.patch(postId).set({ likes: like + 1 })
-            // console.log(result);
-            alert("like added successfully")
+            const post = await client.fetch(query, { postId });
+            let likes = post[0].likes;
+            console.log(likes);
+
+            const newLikes = likes || likes > -1 ? likes + 1 : 0
+            console.log(newLikes);
+
+            client.patch(postId).set({ likes: newLikes })
         } catch (error) {
             alert("an error occured")
         }
@@ -165,7 +168,7 @@ const CommentComponent = ({ params }: { params: Props }) => {
                 <div aria-hidden className='h-6'></div>
 
                 <div className='max-h-[80vh] overflow-y-auto mb-5'>
-                    {comments.map((comment, index) => {
+                    {comments && comments.map((comment, index) => {
                         return <Comments key={comment._id} comment={comment} />
                     })}
                 </div>
