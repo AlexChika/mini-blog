@@ -110,6 +110,7 @@ const CommentComponent = ({ params }: { params: Props }) => {
     console.log(comments);
 
     async function handleLikePost() {
+        alert("post liked")
 
         const query = groq`*[_type == "post" && _id == postId]{
             likes
@@ -117,11 +118,11 @@ const CommentComponent = ({ params }: { params: Props }) => {
 
         try {
             const like = await client.fetch(query);
-            const result = await client.patch(postId).set({ likes: like + 1 })
-            console.log(result);
-            alert(result)
+            client.patch(postId).set({ likes: like + 1 })
+            // console.log(result);
+            alert("like added successfully")
         } catch (error) {
-            alert(error.message)
+            alert("an error occured")
         }
     }
 
