@@ -52,7 +52,6 @@ async function Post({ params: { slug } }: Props) {
 
     const post: Post = await client.fetch(q, { slug });
     const posts: Post[] = await client.fetch(query);
-    console.log(post.comments);
 
 
     return (
@@ -69,7 +68,7 @@ async function Post({ params: { slug } }: Props) {
 
                     <PostShare params={{ body: post.title, slug }} />
 
-                    <CommentComponent params={{ id: post._id, comments: post.comments }} />
+                    <CommentComponent params={{ id: post._id, comments: post.comments, likes: post.likes }} />
 
                     {/* Recent Posts */}
                     <h2 className='text-2xl font-bold text-center bg-[#ff8a75]  bg-opacity-20 p-5 mb-9'>Recent Posts</h2>
