@@ -4,8 +4,10 @@
 import { HandThumbUpIcon, UserIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import { groq } from 'next-sanity'
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState, useRef } from 'react'
+import Loading from '../app/(admin)/studio/[[...index]]/loading'
 import getRandomColor from '../lib/randomColors'
 import { client } from '../lib/sanity.client'
+import Spinner from './Spinner'
 
 
 
@@ -88,7 +90,7 @@ const Comments = ({ comment, setReplyComment }: CommentsProp) => {
     return <div className='bg-white p-3'>
         <UserComment params={{ text, name, publishedAt, id }} />
         {  /* ----------- comment buttons ----------- */}
-        <div className='flex space-x-3 justify-center'>
+        <div className='flex space-x-3 justify-center mb-1'>
             <button onClick={() => setReplyComment(comment)} className='font-bold text-neutral-400 cursor-pointer'>Reply</button>
             <button onClick={handleViewReply} className='font-bold text-neutral-400 cursor-pointer'> {`Replies (${remainingReplies})`}</button>
         </div>
@@ -122,6 +124,7 @@ type CommentComponentProps = {
 const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
     const { id: postId, comments, likes } = params
 
+    const [loading, setLoading] = useState(false)
     const [_Likes, SetLikes] = useState(likes);
     const [_Comments, SetComments] = useState(comments);
 
@@ -130,7 +133,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
     const [commentObj, setCommentObj] = useState({
         name: "",
         text: ""
-    })
+    })//comment imput states
     const commentHeaderRef = useRef<HTMLDivElement>(null);
 
     function formOnchange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -153,13 +156,13 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
         text: commentObj.text,
         subcomments: [],
         publishedAt: new Date().toISOString()
-    }
+    }//new comment object
 
     const newSubComment = {
         _type: 'subcomment',
         name: commentObj.name,
         text: commentObj.text,
-    }
+    }//new sub comment object
 
     async function addCommentRef(field: string, commentRef: { _type: string, _ref: string }) {
         const result = await client
@@ -180,15 +183,16 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
         }
 
         try {
-
+            setLoading(true)
             if (replyComment) {
                 await commentOnComment()
             } else {
                 await commentOnPost()
             }
-
             setCommentObj({ name: commentObj.name, text: "" })
+            setLoading(false)
         } catch (error) {
+            setLoading(false)
             alert("Error !!! Couldnt post comment.")
         }
 
@@ -270,7 +274,6 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
         <div className='my-12'>
             <h2 ref={commentHeaderRef} className='text-2xl font-bold text-center bg-[#ff8a75]  bg-opacity-20 p-5'>Comment</h2>
 
-
             {/* comment form */}
             <div className='mt-9'>
 
@@ -281,7 +284,6 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
                         <XCircleIcon className='h-6 w-6' />
                     </button>
                 </div>
-
 
                 {/* name inputs */}
                 <div className='flex mb-5'>
@@ -301,7 +303,10 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
                 </div>
 
                 <div className='flex'>
-                    <button onClick={handleSubmitComment} className='flex-[0.5] text-white bg-[#ff8a75] h-9 w-full text-center font-bold'>Submit</button>
+                    <button onClick={handleSubmitComment} className='flex-[0.5] flex items-center justify-center relative text-white bg-[#ff8a75] h-9 w-full text-center font-bold'>
+                        Submit
+                        <Spinner class='absolute' sm stop={!loading} />
+                    </button>
 
                     <button onClick={() => handleLikePost(postId, () => { })} className='h-9 text-center flex-[0.5] bg-blue-300 flex justify-center items-center space-x-2'>
                         <HandThumbUpIcon className=' h-8 w-8 text-white' />
