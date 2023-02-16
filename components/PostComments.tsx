@@ -167,7 +167,6 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
             .setIfMissing({ [field]: [] })
             .append(field, [commentRef])
             .commit({ autoGenerateArrayKeys: true })
-        // console.log(result);
         return result
     }
 
@@ -237,7 +236,6 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
     }
 
     async function updateComments() {
-
         const q = groq`*[_type == "post" && _id == $postId]{
             comments[]->{
                 ...,

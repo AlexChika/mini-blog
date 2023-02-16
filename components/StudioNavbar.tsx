@@ -4,8 +4,6 @@ import { StudioNavbar } from "sanity";
 
 
 const _StudioNavbar = (props: any) => {
-    console.log(props);
-
     return (
         <nav>
             <div className="flex items-center justify-between px-5 py-2">
