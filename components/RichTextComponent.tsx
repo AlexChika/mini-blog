@@ -6,10 +6,8 @@ import urlFor from "../lib/urlFor";
 export const RichTextComponents = {
     types: {
         image: ({ value }: any) => {
-            const url = urlFor(value).url()
-            console.log(url);
             return (
-                <div className="relative w-full aspect-video max-h-96 m-10 mx-auto">
+                <div className="relative w-full aspect-video max-h-96 m-3 mx-auto">
                     <Image className="object-contain" src={urlFor(value).url()} alt="Blog Post Image"
                         fill />
                 </div>
