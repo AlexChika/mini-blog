@@ -47,7 +47,7 @@ async function Post({ params: { slug } }: Props) {
           ...,
           author->,
           categories[]->
-       }[0...6]
+       }[0...6] | order(_createdAt desc)
     `
 
     const post: Post = await client.fetch(q, { slug });
