@@ -2,22 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import urlFor from "../lib/urlFor";
 
+
 export const RichTextComponents = {
     types: {
         image: ({ value }: any) => {
+            const url = urlFor(value).url()
+            console.log(url);
             return (
-                <div className="relative w-full h-96 m-10 mx-auto">
+                <div className="relative w-full aspect-video max-h-96 m-10 mx-auto">
                     <Image className="object-contain" src={urlFor(value).url()} alt="Blog Post Image"
                         fill />
                 </div>
             )
         },
-        callToAction: ({ value, isInline }: { value: any, isInline: any }) =>
-            isInline ? (
-                <a href={value.url}>{value.text}</a>
-            ) : (
-                <div className="py-[50px]">{value.text}</div>
-            ),
     },
 
     list: {
