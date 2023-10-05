@@ -13,6 +13,10 @@
     color: #ff8a75;
   }
 
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-950 via-[#ff8a75] to-blue-950 text-transparent bg-clip-text;
+  }
+
   .line-clamp-2 {
     overflow: hidden;
     display: -webkit-box;
@@ -50,24 +54,11 @@
     display: none;
   }
 
-  @-webkit-keyframes rotate {
-    0% {
-      -webkit-transform: rotate(0);
-      transform: rotate(0);
-    }
-
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
   @keyframes rotate {
     0% {
-      -webkit-transform: rotate(0);
       transform: rotate(0);
     }
     100% {
-      -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
   }

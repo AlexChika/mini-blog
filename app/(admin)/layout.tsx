@@ -1,13 +1,18 @@
-import "../../styles/globals.css"
+import "../../styles/globals.css";
+
+export const metadata = {
+  title: "Mini blog tudio",
+  description: "Your devosphere studio",
+};
+
 export default function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode;
 }) {
-    return (
-        <html>
-            <head />
-            <body>{children}</body>
-        </html>
-    )
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  );
 }
