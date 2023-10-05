@@ -1,5 +1,4 @@
 import Banner from "../../components/Banner";
-import Header from "../../components/Header";
 import "../../styles/globals.css";
 
 export const metadata = {
@@ -15,7 +14,6 @@ export default function RootLayout({
   return (
     <html>
       <body className="bg-white max-w-7xl mx-auto">
-        {/* <Header /> */}
         <Banner />
         {children}
       </body>

@@ -1,13 +1,16 @@
-import { ComputerDesktopIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col items-center text-center lg:flex-row lg:space-x-5 justify-between font-bold px-3 sm:px-10 py-3 sm:py-5 mb-10 border border-white bg-slate-100 mt-">
+    <header className="flex flex-col items-center text-center lg:flex-row lg:space-x-5 justify-between font-bold px-3 sm:px-10 py-3 sm:py-5 mb-10 border border-white bg-slate-100">
       {/* title */}
       <div>
-        <h1 className="flex justify-center lg:justify-start items-center w-max text-center text-[2rem] sm:text-6xl italic text-gradient">
+        <Link
+          href="/"
+          className="block w-max text-[2rem] sm:text-6xl italic text-gradient"
+        >
           Mini Blog
-        </h1>
+        </Link>
 
         <h2 className="mt-2 sm:mt-5 md:mt-1 lg:mt-0">
           Welcome to{" "}
@@ -22,7 +25,7 @@ const Banner = () => {
         New product feautures | The latest in technology | The weekly debugging
         nightmares & more
       </p>
-    </div>
+    </header>
   );
 };
 

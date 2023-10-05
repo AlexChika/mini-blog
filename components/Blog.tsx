@@ -20,7 +20,7 @@ const Blog = ({ route, post }: { route: string; post: Post }) => {
           {/* overlay on photo */}
           <div className="absolute bottom-0 w-full bg-opacity-40 bg-black drop-shadow-lg rounded text-white p-3 justify-between flex">
             {/* text - wrappers */}
-            <div className="self-end">
+            <div className="self-end text-white">
               <p className="font-bold">{post.title}</p>
               <p>
                 {new Date(post._createdAt).toLocaleDateString("en-US", {
@@ -37,7 +37,7 @@ const Blog = ({ route, post }: { route: string; post: Post }) => {
                 return (
                   <div
                     key={i}
-                    className="bg-[#ff8a75] text-center text-black px-3 py-1 rounded-full text-sm font-semibold"
+                    className="bg-slate-500 text-center text-white px-3 py-1 rounded-full text-xs font-semibold"
                   >
                     <p>{category.title}</p>
                   </div>

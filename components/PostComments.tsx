@@ -14,7 +14,6 @@ import {
   useState,
   useRef,
 } from "react";
-import Loading from "../app/(admin)/studio/[[...index]]/loading";
 import getRandomColor from "../lib/randomColors";
 import { client } from "../lib/sanity.client";
 import Spinner from "./Spinner";
@@ -33,8 +32,8 @@ const UserComment = ({ params }: { params: UserCommentProp }) => {
 
   useEffect(() => {
     try {
-      const wrapper: any = document.querySelector(`[data-id="${id}"]`);
-      wrapper.style.setProperty("--bg-color", col);
+      const userIconWrapper: any = document.querySelector(`[data-id="${id}"]`);
+      userIconWrapper.style.setProperty("--bg-color", col);
     } catch (error) {
       console.log(error);
     }
@@ -45,15 +44,15 @@ const UserComment = ({ params }: { params: UserCommentProp }) => {
       <div className="flex relative">
         <div
           data-id={id}
-          className="bg-[var(--bg-color)] rounded-full h-7 flex  items-center justify-center min-w-[1.75rem] z-10"
+          className="bg-[var(--bg-color)] rounded-full h-7 flex items-center justify-center min-w-[1.75rem] z-10"
         >
           <UserIcon className="h-5 w-5 text-white" />
         </div>
 
-        <div>
-          <p className="font-bold text-base ml-3 truncate italic">{name}</p>
+        <div className="ml-3">
+          <p className="font-bold text-base truncate italic">{name}</p>
 
-          <p className={`ml-3 text-gray-500`}>
+          <p className={`text-gray-500`}>
             <span className={seeMore ? "" : "line-clamp-2"}>{text}</span>
 
             {text && text.length > 50 && (
@@ -77,7 +76,7 @@ type CommentsProp = {
 };
 const Comments = ({ comment, setReplyComment }: CommentsProp) => {
   const { subcomments, text, name, publishedAt, _id: id }: Comment = comment;
-  const [viewReplies, setViewReplies] = useState(0);
+  const [noOfReplies, setNoOfReplies] = useState(0);
   const [remainingReplies, setRemainingReplies] = useState(
     subcomments ? subcomments.length : 0
   );
@@ -85,21 +84,22 @@ const Comments = ({ comment, setReplyComment }: CommentsProp) => {
   function handleViewReply() {
     if (!subcomments) return;
 
-    let replies = viewReplies;
-    replies = Math.min(viewReplies + 3, subcomments.length);
-    setViewReplies(replies);
+    let replies = noOfReplies;
+    replies = Math.min(noOfReplies + 3, subcomments.length);
+    setNoOfReplies(replies);
   }
 
   useEffect(() => {
     if (!subcomments) return;
 
-    let remaining = subcomments.length - viewReplies;
+    let remaining = subcomments.length - noOfReplies;
     setRemainingReplies(remaining);
-  }, [viewReplies, subcomments]);
+  }, [noOfReplies, subcomments]);
 
   return (
     <div className="bg-white p-3">
       <UserComment params={{ text, name, publishedAt, id }} />
+
       {/* ----------- comment buttons ----------- */}
       <div className="flex space-x-3 justify-center mb-1">
         <button
@@ -120,9 +120,9 @@ const Comments = ({ comment, setReplyComment }: CommentsProp) => {
       {subcomments && subcomments.length > 0 && (
         <div className="w-[85%] ml-auto border-l">
           {/* replies */}
-          {viewReplies > 0 && (
+          {noOfReplies > 0 && (
             <div>
-              {subcomments.slice(0, viewReplies).map((subcomment, ind) => {
+              {subcomments.slice(0, noOfReplies).map((subcomment, ind) => {
                 const { text, name, _id: id, publishedAt } = subcomment;
                 return (
                   <UserComment
@@ -245,10 +245,10 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
   async function commentOnComment() {
     if (!replyComment) return; //double check
 
-    const result = await client.create(newSubComment);
+    const subcomment = await client.create(newSubComment);
     const newcommentRef = {
       _type: "reference",
-      _ref: result._id,
+      _ref: subcomment._id,
     };
 
     await addCommentRef("subcomments", newcommentRef);
@@ -382,7 +382,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
         </h2>
 
         {/* spacing */}
-        <div aria-hidden className="h-6"></div>
+        <div aria-hidden className="h-6" />
 
         <div className="max-h-[80vh] overflow-y-auto mb-5">
           {_Comments &&

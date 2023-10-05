@@ -9,6 +9,10 @@
 }
 
 @layer utilities {
+  .red {
+    border: 2px solid red;
+  }
+
   .text-primary {
     color: #ff8a75;
   }
