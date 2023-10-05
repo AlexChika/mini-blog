@@ -14,22 +14,22 @@ const query = groq`*[_type == "post"]{
 `;
 
 const HomePage = async () => {
-  //   const { isEnabled } = draftMode();
-  //   if (isEnabled) {
-  //     return (
-  //       <PreviewSuspense
-  //         fallback={
-  //           <div role="status">
-  //             <p className="text-center text-lg animate-pulse text-primary ">
-  //               Loading Preview Data...
-  //             </p>
-  //           </div>
-  //         }
-  //       >
-  //         <PreviewBlogList query={query} />
-  //       </PreviewSuspense>
-  //     );
-  //   }
+  const { isEnabled } = draftMode();
+  if (isEnabled) {
+    return (
+      <PreviewSuspense
+        fallback={
+          <div role="status">
+            <p className="text-center text-lg animate-pulse text-primary ">
+              Loading Preview Data...
+            </p>
+          </div>
+        }
+      >
+        <PreviewBlogList query={query} />
+      </PreviewSuspense>
+    );
+  }
 
   const posts = await client.fetch(query);
 

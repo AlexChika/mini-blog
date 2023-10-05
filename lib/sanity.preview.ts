@@ -1,6 +1,5 @@
 "use client";
 
-import { client } from "./sanity.client";
 import { definePreview } from "next-sanity/preview";
 import { projectId, dataset } from "./sanity.client";
 

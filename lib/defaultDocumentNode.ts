@@ -3,7 +3,7 @@ import Iframe from "sanity-plugin-iframe-pane";
 
 const url =
   process.env.NODE_ENV === "production"
-    ? "https://dev-arise-blog.vercel.app/api/preview"
+    ? "https://minyblog.vercel.app/api/preview"
     : "http://localhost:3000/api/preview";
 
 // Import this into the deskTool() plugin
