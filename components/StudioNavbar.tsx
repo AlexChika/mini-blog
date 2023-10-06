@@ -8,7 +8,7 @@ const _StudioNavbar = (props: any) => {
       <div className="flex items-center justify-between px-5 py-2 text-sm">
         <Link
           href="/"
-          className="bg-slate-300 text-white font-semibold flex items-center px-2 py-1 rounded-lg "
+          className="border-2 border-blue-300 bg-slate-300 text-white font-semibold flex items-center px-2 py-1 rounded-lg "
         >
           <ArrowUturnLeftIcon className="h-6 w-6 text-[#ff8a75] mr-2" />
 
