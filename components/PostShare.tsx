@@ -56,7 +56,13 @@ const PostShare = ({ params: { body, slug } }: { params: Props }) => {
 
         <TwitterShareButton
           url={fullUrl}
-          hashtags={["Sanity", "DevAriseBlog", "Tech", "alex", "next"]}
+          hashtags={[
+            "Sanity",
+            "DevArise",
+            "Tech",
+            "Frontend",
+            "WebDevelopment",
+          ]}
           title={body}
           blankTarget={true}
         >
@@ -65,7 +71,7 @@ const PostShare = ({ params: { body, slug } }: { params: Props }) => {
 
         <EmailShareButton
           url={fullUrl}
-          subject={"From Dev Arise Blog"}
+          subject={"From Mini Blog"}
           body={body}
           blankTarget={true}
         >
