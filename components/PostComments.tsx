@@ -53,15 +53,18 @@ const UserComment = ({ params }: { params: UserCommentProp }) => {
           <p className="font-bold text-base truncate italic">{name}</p>
 
           <p className={`text-gray-500`}>
-            <span className={seeMore ? "" : "line-clamp-2"}>{text}</span>
-
-            {text && text.length > 50 && (
-              <button
-                className={seeMore ? "hidden" : "inline text-xs"}
-                onClick={() => setSeeMore(!seeMore)}
-              >
-                More...
-              </button>
+            {text && text.length <= 100 ? (
+              <span>{text}</span>
+            ) : (
+              <>
+                <span>{seeMore ? text : text.substring(0, 100)} &nbsp;</span>
+                <button
+                  className={seeMore ? "hidden" : "inline text-xs"}
+                  onClick={() => setSeeMore(!seeMore)}
+                >
+                  More...
+                </button>
+              </>
             )}
           </p>
         </div>
@@ -188,6 +191,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
     _type: "subcomment",
     name: commentObj.name,
     text: commentObj.text,
+    publishedAt: new Date().toISOString(),
   }; //new sub comment object
 
   async function addCommentRef(
@@ -218,6 +222,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
       setLoading(true);
       if (replyComment) {
         await commentOnComment();
+        setReplyComment(null);
       } else {
         await commentOnPost();
       }
@@ -299,7 +304,10 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
 
   return (
     <div className="my-12">
-      <h2 className="text-2xl font-bold text-center bg-gray-200 p-5">
+      <h2
+        ref={commentHeaderRef}
+        className="text-2xl font-bold text-center bg-gray-200 p-5"
+      >
         <span className="text-gradient">Comment</span>
       </h2>
 
