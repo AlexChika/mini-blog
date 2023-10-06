@@ -299,7 +299,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
 
   return (
     <div className="my-12">
-      <h2 className="text-2xl font-bold text-center bg-gray-400 bg-opacity-20 p-5">
+      <h2 className="text-2xl font-bold text-center bg-gray-200 p-5">
         <span className="text-gradient">Comment</span>
       </h2>
 
@@ -377,7 +377,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
 
       {/* comment section */}
       <section className="mt-12">
-        <h2 className="text-2xl font-bold text-center bg-gray-400 bg-opacity-20 p-5">
+        <h2 className="text-2xl font-bold text-center bg-gray-200 p-5">
           <span className="text-gradient">Comment Section</span>
         </h2>
 

@@ -73,7 +73,7 @@ async function Post({ params: { slug } }: Props) {
           />
 
           {/* Recent Posts */}
-          <h2 className="text-2xl font-bold text-center bg-gray-400 bg-opacity-20 mb-9 p-5">
+          <h2 className="text-2xl font-bold text-center bg-gray-200 mb-9 p-5">
             <span className="bg-gradient-to-r from-blue-950 via-[#ff8a75] to-blue-950 bg-clip-text text-transparent">
               Recent Posts
             </span>

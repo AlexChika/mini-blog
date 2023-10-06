@@ -20,6 +20,9 @@
   .text-gradient {
     @apply bg-gradient-to-r from-blue-950 via-[#ff8a75] to-blue-950 text-transparent bg-clip-text;
   }
+  .bg-gradient {
+    @apply bg-gradient-to-r from-blue-950 via-[#ff8a75] to-blue-950;
+  }
 
   .line-clamp-2 {
     overflow: hidden;

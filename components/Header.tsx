@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Banner = () => {
+const Header = () => {
   return (
     <header className="flex flex-col items-center text-center lg:flex-row lg:space-x-5 justify-between font-bold px-3 sm:px-10 py-3 sm:py-5 mb-10 border border-white bg-slate-100">
       {/* title */}
@@ -29,4 +29,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default Header;

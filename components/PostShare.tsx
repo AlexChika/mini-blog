@@ -23,7 +23,7 @@ const PostShare = ({ params: { body, slug } }: { params: Props }) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center bg-gray-400 bg-opacity-20 p-5">
+      <h2 className="text-2xl font-bold text-center bg-gray-200 p-5">
         <span className="text-gradient">Share This Post</span>
       </h2>
 
