@@ -25,7 +25,7 @@ function Modal() {
   useEffect(() => {
     setTimeout(() => {
       setShowModal(true);
-    }, 3000);
+    }, 5000);
   }, []);
 
   return (
@@ -119,10 +119,11 @@ function Modal() {
             <p className="text-slate-400 text-sm">Powered by Sanity v3</p>
             <button
               onClick={showVideoModal}
-              className="flex items-center text-slate-600 text-sm"
+              className="flex items-center text-slate-600 underline text-sm"
             >
-              Watch <PlayCircleIcon className="h-4 w-4 text-amber-900" /> a
-              demonstration of Sanity Studio
+              Watch
+              <PlayCircleIcon className="h-6 w-6 text-amber-900" /> a
+              Demonstration of Sanity Studio
             </button>
           </div>
 

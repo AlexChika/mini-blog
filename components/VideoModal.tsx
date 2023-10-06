@@ -22,16 +22,6 @@ function VideoModal(props: Props) {
     const video = videoRef.current;
 
     video.play();
-
-    function onVideoEnd() {
-      if (video.ended) {
-        setVideoModal(false);
-      }
-    }
-
-    video.removeEventListener("timeupdate", onVideoEnd);
-
-    return () => video.addEventListener("timeupdate", onVideoEnd);
   }, [videoModal]);
 
   return (
