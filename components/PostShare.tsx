@@ -11,7 +11,7 @@ import {
   FacebookShareButton,
   FacebookIcon,
 } from "next-share";
-const baseUrl = "https://minyblog.vercel.app/";
+const baseUrl = "https://miniblog.devarise.tech/";
 
 type Props = {
   body: string;

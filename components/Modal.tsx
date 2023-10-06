@@ -13,15 +13,13 @@ const features = [
 ];
 const stack = ["Sanity", "TypeScript", "NextJs", "Tailwind"];
 function Modal() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   function hideModal() {
     setShowModal(false);
   }
 
   useEffect(() => {
-    // if (localStorage.getItem("modal")) return;
-
     setTimeout(() => {
       setShowModal(true);
     }, 10_000);
