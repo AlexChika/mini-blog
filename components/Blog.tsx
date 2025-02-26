@@ -1,6 +1,6 @@
 "use strict";
 
-import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { HiArrowUpRight } from "react-icons/hi2";
 import Image from "next/image";
 import Link from "next/link";
 import urlFor from "../lib/urlFor";
@@ -60,7 +60,7 @@ const Blog = ({ route, post }: { route: string; post: Post }) => {
 
         <p className="mt-5 p-3 font-bold flex items-center group-hover:underline">
           Read Post
-          <ArrowUpRightIcon className="ml-2 h-4 w-4" />
+          <HiArrowUpRight className="ml-2 h-4 w-4" />
         </p>
       </article>
     </Link>

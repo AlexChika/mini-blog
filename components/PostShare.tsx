@@ -11,7 +11,7 @@ import {
   FacebookShareButton,
   FacebookIcon,
 } from "next-share";
-const baseUrl = "https://miniblog.devarise.tech/";
+const baseUrl = "https://miniblog.globalstack.dev";
 
 type Props = {
   body: string;

@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import Modal from "../../components/Modal";
+import ProjectOverview from "../../components/project";
 import "../../styles/globals.css";
 
 export const metadata = {
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html>
       <body className="bg-white max-w-7xl mx-auto">
-        <Modal />
+        <ProjectOverview />
         <Header />
         {children}
       </body>

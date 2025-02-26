@@ -11,7 +11,7 @@ const StudioLogo = (props: any) => {
         height={800}
         className="rounded-full object-cover h-7 w-7"
         src="https://i.postimg.cc/QMtPzJth/alex.jpg"
-        alt="dev-arise"
+        alt="alex chika"
       />
 
       <>{renderDefault(props)}</>

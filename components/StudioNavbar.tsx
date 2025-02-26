@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { PiArrowBendUpLeftBold } from "react-icons/pi";
 import { StudioNavbar } from "sanity";
 
 const _StudioNavbar = (props: any) => {
@@ -10,7 +10,7 @@ const _StudioNavbar = (props: any) => {
           href="/"
           className="border-2 border-blue-300 bg-slate-300 text-white font-semibold flex items-center px-2 py-1 rounded-lg "
         >
-          <ArrowUturnLeftIcon className="h-6 w-6 text-[#ff8a75] mr-2" />
+          <PiArrowBendUpLeftBold className="h-5 w-5 text-[#ff8a75] mr-2" />
 
           <span className="text-gradient">Go to Website</span>
         </Link>
@@ -19,10 +19,10 @@ const _StudioNavbar = (props: any) => {
           <h1 className="font-bold">Lets build together</h1>
 
           <Link
-            href="https://i-am-alex.netlify.app"
+            href="https://www.alexchika.com"
             className="text-gradient font-bold ml-2"
           >
-            https://alex.devarise.tech
+            https://www.alexchika.com
           </Link>
         </div>
       </div>

@@ -1,10 +1,7 @@
 "use client";
 
-import {
-  HandThumbUpIcon,
-  UserIcon,
-  XCircleIcon,
-} from "@heroicons/react/24/solid";
+import { FaTimesCircle } from "react-icons/fa";
+import { FaThumbsUp, FaUser } from "react-icons/fa6";
 import { groq } from "next-sanity";
 import {
   ChangeEvent,
@@ -46,7 +43,7 @@ const UserComment = ({ params }: { params: UserCommentProp }) => {
           data-id={id}
           className="bg-[var(--bg-color)] rounded-full h-7 flex items-center justify-center min-w-[1.75rem] z-10"
         >
-          <UserIcon className="h-5 w-5 text-white" />
+          <FaUser className="h-3.5 w-3.5 text-white" />
         </div>
 
         <div className="ml-3">
@@ -323,7 +320,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
             replying {"@" + replyComment?.name}
           </p>
           <button onClick={() => setReplyComment(null)}>
-            <XCircleIcon className="h-6 w-6" />
+            <FaTimesCircle className="h-4 w-4" />
           </button>
         </div>
 
@@ -377,7 +374,7 @@ const CommentComponent = ({ params }: { params: CommentComponentProps }) => {
             onClick={() => handleLikePost(postId, () => {})}
             className="h-9 text-center flex-[0.5] bg-blue-300 flex justify-center items-center space-x-2"
           >
-            <HandThumbUpIcon className=" h-8 w-8 text-white" />
+            <FaThumbsUp className=" h-6 w-6 text-white" />
             <span className="font-bold text-white">{_Likes} likes</span>
           </button>
         </div>
