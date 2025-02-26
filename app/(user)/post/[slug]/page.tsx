@@ -8,9 +8,9 @@ import CommentComponent from "../../../../components/PostComments";
 import PostShare from "../../../../components/PostShare";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export const revalidate = 60;
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
   });
 }
 
-async function Post({ params: { slug } }: Props) {
+async function Post({ params }: Props) {
+  const { slug } = await params;
   const q = groq`
         *[_type == "post" && slug.current == $slug][0]{
             ...,
