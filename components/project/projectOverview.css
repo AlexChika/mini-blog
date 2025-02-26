@@ -113,7 +113,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.5s linear;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .pov_overview_wrapper.open {
@@ -191,9 +191,9 @@
   z-index: 25;
   background: linear-gradient(
     rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3),
     rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 0, 0, 0.6)
   );
 }
 
@@ -272,7 +272,7 @@
   font-size: 18px;
   width: 85%;
   margin: 0 auto;
-  margin: 10px auto;
+  margin: 7px auto;
   font-style: italic;
   color: white;
   text-shadow: 1px 1px 2px black;
