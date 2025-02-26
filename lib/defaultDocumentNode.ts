@@ -1,5 +1,5 @@
-import type { DefaultDocumentNodeResolver } from "sanity/desk";
-import Iframe from "sanity-plugin-iframe-pane";
+import type { DefaultDocumentNodeResolver } from "sanity/structure";
+import { Iframe } from "sanity-plugin-iframe-pane";
 
 const url =
   process.env.NODE_ENV === "production"

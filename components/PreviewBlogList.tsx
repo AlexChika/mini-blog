@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
-import { usePreview } from "../lib/sanity.preview"
-import BlogList from "./BlogList"
+import BlogList from "./BlogList";
 
 type Props = {
-    query: string
-}
+  posts: Post[];
+};
 
-const PreviewBlogList = ({ query }: Props) => {
-    const posts = usePreview(null, query)
-    return <BlogList posts={posts} />
-}
+const PreviewBlogList = ({ posts }: Props) => {
+  return <BlogList posts={posts} />;
+};
 
-export default PreviewBlogList
+export default PreviewBlogList;

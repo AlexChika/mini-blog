@@ -1,9 +1,13 @@
-import { draftMode } from "next/headers";
 import { groq } from "next-sanity";
+import { lazy, Suspense } from "react";
+import { draftMode } from "next/headers";
 import { client } from "../../lib/sanity.client";
-import PreviewSuspense from "../../components/PreviewSuspense";
 import BlogList from "../../components/BlogList";
 import PreviewBlogList from "../../components/PreviewBlogList";
+const PreviewProvider = lazy(() => import("../../components/PreviewProvider"));
+
+// import PreviewProvider from "../../components/PreviewSuspense";
+// import PreviewSuspense from "../../components/PreviewSuspense";
 
 export const revalidate = 60;
 
@@ -14,10 +18,13 @@ const query = groq`*[_type == "post"]{
 `;
 
 const HomePage = async () => {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
+  const posts = await client.fetch(query);
+
   if (isEnabled) {
+    const children = <PreviewBlogList posts={posts} />;
     return (
-      <PreviewSuspense
+      <Suspense
         fallback={
           <div role="status">
             <p className="text-center text-lg animate-pulse text-primary ">
@@ -26,12 +33,10 @@ const HomePage = async () => {
           </div>
         }
       >
-        <PreviewBlogList query={query} />
-      </PreviewSuspense>
+        <PreviewProvider>{children}</PreviewProvider>
+      </Suspense>
     );
   }
-
-  const posts = await client.fetch(query);
 
   return <BlogList posts={posts} />;
 };
