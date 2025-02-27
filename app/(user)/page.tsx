@@ -22,7 +22,7 @@ const HomePage = async () => {
   const posts = await client.fetch(query);
 
   if (isEnabled) {
-    const children = <PreviewBlogList posts={posts} />;
+    const children = <PreviewBlogList query={query} posts={posts} />;
     return (
       <Suspense
         fallback={

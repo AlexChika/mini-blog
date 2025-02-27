@@ -19,8 +19,15 @@ export default function PreviewProvider({
   token?: string;
 }) {
   if (!token) throw new TypeError("Missing token");
+  const _client = client.withConfig({
+    token,
+    useCdn: false,
+    ignoreBrowserTokenWarning: true,
+    perspective: "drafts",
+  });
+
   return (
-    <LiveQueryProvider client={client} token={token}>
+    <LiveQueryProvider client={_client} token={token}>
       {children}
     </LiveQueryProvider>
   );
