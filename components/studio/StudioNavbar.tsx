@@ -3,14 +3,13 @@ import { PiArrowBendUpLeftBold } from "react-icons/pi";
 import { useState } from "react";
 
 const _StudioNavbar = (props: any) => {
-  console.log({ props });
-  const [revalidateType, setRevalidateType] = useState<"App" | "Page">("App");
+  const [revalidateType, setRevalidateType] = useState<"App" | "Post">("App");
 
   const id = "MiniBlogStudioRevalidateBtn";
 
   function handleRadioCheck(
     e: React.ChangeEvent<HTMLInputElement>,
-    type: "App" | "Page"
+    type: "App" | "Post"
   ) {
     const button = document.querySelector(`#${id}`);
     if (e.target.checked) {
@@ -27,7 +26,7 @@ const _StudioNavbar = (props: any) => {
         if (value) button?.removeAttribute("disabled");
         else button?.setAttribute("disabled", "true");
 
-        setRevalidateType("Page");
+        setRevalidateType("Post");
       }
     } else {
       button?.setAttribute("disabled", "true");
@@ -44,7 +43,6 @@ const _StudioNavbar = (props: any) => {
   }
 
   async function revalidateHandler() {
-    console.log("hit");
     if (!revalidateType) return;
 
     const slugInput = document.querySelector(
@@ -53,11 +51,13 @@ const _StudioNavbar = (props: any) => {
 
     const value = slugInput?.value?.trim();
 
-    if (revalidateType === "Page" && !value) return;
+    if (revalidateType === "Post" && !value) return;
 
-    const path = revalidateType === "App" ? "/" : `/${value}`;
+    const path = revalidateType === "App" ? "/" : `/post/${value}`;
 
     const url = `/api/revalidate?path=${path}&secret=${process.env.NEXT_PUBLIC_REVALIDATION_SECRET}`;
+
+    console.log({ url });
 
     const res = await fetch(url);
     const data = await res.json();
@@ -94,7 +94,7 @@ const _StudioNavbar = (props: any) => {
             <span className="font-semibold">App</span>
             &nbsp; &nbsp;
             <input
-              onChange={(e) => handleRadioCheck(e, "Page")}
+              onChange={(e) => handleRadioCheck(e, "Post")}
               type="radio"
               name="validate"
               id=""

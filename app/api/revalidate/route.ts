@@ -18,8 +18,8 @@ export async function GET(request: NextRequest) {
       { status: 400 }
     );
   }
-
-  revalidatePath(path);
+  console.log({ path });
+  revalidatePath(path, "page");
 
   return NextResponse.json({
     revalidated: true,
