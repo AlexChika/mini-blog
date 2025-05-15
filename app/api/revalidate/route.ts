@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     );
   }
   console.log({ path });
-  revalidatePath(path, "page");
+  revalidatePath(path);
 
   return NextResponse.json({
     revalidated: true,
