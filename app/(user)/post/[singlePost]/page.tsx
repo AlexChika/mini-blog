@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
-import { client } from "sanity/sanityClient";
+import { client } from "sanityUtils/sanityClient";
 import PostBanner from "components/singlePost/PostBanner";
 import { RichTextComponents } from "components/RichTextComponent";
 import BlogCard from "components/BlogCard";

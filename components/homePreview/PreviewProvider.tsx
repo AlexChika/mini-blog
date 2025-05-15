@@ -2,7 +2,7 @@
 
 import { LiveQueryProvider } from "next-sanity/preview";
 
-import { client } from "sanity/sanityClient";
+import { client } from "sanityUtils/sanityClient";
 const _token =
   typeof process === "undefined"
     ? ""

@@ -12,7 +12,7 @@ import {
   useRef,
 } from "react";
 import getRandomColor from "lib/randomColors";
-import { client } from "sanity/sanityClient";
+import { client } from "sanityUtils/sanityClient";
 import Spinner from "components/Spinner";
 
 type UserCommentProp = {

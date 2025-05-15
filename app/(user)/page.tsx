@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
-import { client } from "sanity/sanityClient";
+import { client } from "sanityUtils/sanityClient";
 import Home from "components/Home";
 import HomePreview from "components/homePreview";
 

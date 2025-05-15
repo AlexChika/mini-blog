@@ -1,8 +1,8 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "sanity/schemas";
-import { myTheme } from "sanity/theme";
+import { schemaTypes } from "sanityUtils/schemas";
+import { myTheme } from "sanityUtils/theme";
 import StudioNavbar from "components/studio/StudioNavbar";
 import StudioLogo from "components/studio/StudioLogo";
 import { getDefaultDocumentNode } from "lib/defaultDocumentNode";
