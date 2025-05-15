@@ -1,6 +1,6 @@
-import Header from "../../components/Header";
-import ProjectOverview from "../../components/project";
-import "../../styles/globals.css";
+import Header from "components/Header";
+import ProjectOverview from "components/project";
+import "styles/globals.css";
 
 export const metadata = {
   title: "Mini blog",

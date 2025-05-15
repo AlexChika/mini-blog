@@ -247,23 +247,22 @@ export function ProjectOverviewModal({
                 play ? "playing" : ""
               }`}
             >
-              <h1 className="pov_video_overlay_heading">
-                Watch a Short Overview Clip
-              </h1>
-
-              <button
-                className="pov_video_overlay_playBtn"
-                onClick={() => handleYtPlayPause("play")}
-                // onClick={handlePlay}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
+              <div className="pov_video_overlay_playwrapper">
+                <button
+                  className="playBtn"
+                  onClick={() => handleYtPlayPause("play")}
+                  // onClick={handlePlay}
                 >
-                  <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                  </svg>
+                </button>
+                <p>Click the play button to watch</p>
+              </div>
 
               <div className="pov_video_overlay_footnote">
                 <p>

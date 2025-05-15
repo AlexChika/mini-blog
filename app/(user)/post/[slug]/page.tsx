@@ -13,7 +13,7 @@ type Props = {
   }>;
 };
 
-export const revalidate = 60;
+export const revalidate = 2 * 24 * 60 * 60; // 2 days
 
 export async function generateStaticParams() {
   const query = groq`*[_type == "post"]{
@@ -57,12 +57,12 @@ async function Post({ params }: Props) {
     <main className="pb-28">
       <PostBanner post={post} />
 
-      <div className="flex flex-col min-[800px]:flex-row justify-between gap-10 w-full px-2 sm:px-5">
-        <article className="mt-7 pt-5 min-[800px]:pl-5  min-[800px]:w-[60%] w-full bg-white">
+      <div className="flex flex-col min-[50rem]:flex-row justify-between gap-10 w-full px-2 sm:px-5">
+        <article className="mt-7 pt-5 min-[50rem]:pl-5  min-[50rem]:w-[60%] w-full bg-white">
           <PortableText value={post.body} components={RichTextComponents} />
         </article>
 
-        <section className="min-[800px]:max-w-[500px] min-[800px]:w-[40%] mt-7 min-[800px]:pr-5">
+        <section className="min-[50rem]:max-w-[31.25rem] min-[50rem]:w-[40%] mt-7 min-[50rem]:pr-5">
           <PostShare params={{ body: post.title, slug }} />
 
           <CommentComponent

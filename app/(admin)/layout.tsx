@@ -1,7 +1,7 @@
-import "../../styles/globals.css";
+import "styles/globals.css";
 
 export const metadata = {
-  title: "Mini blog tudio",
+  title: "Mini blog studio",
   description: "Your devosphere studio",
 };
 

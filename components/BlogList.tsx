@@ -19,7 +19,7 @@ const BlogList = ({ posts }: Props) => {
         })}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 px-3 min-[500px]:px-5 sm:px-10 gap-10 gap-y-16 pb-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 px-3 min-[31.25rem]:px-5 sm:px-10 gap-10 gap-y-16 pb-24">
         {posts.map((post: Post) => {
           return (
             <Blog
