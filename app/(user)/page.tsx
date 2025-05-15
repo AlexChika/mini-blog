@@ -1,15 +1,10 @@
 import { groq } from "next-sanity";
-import { lazy, Suspense } from "react";
 import { draftMode } from "next/headers";
-import { client } from "../../lib/sanity.client";
-import BlogList from "../../components/BlogList";
-import PreviewBlogList from "../../components/PreviewBlogList";
-const PreviewProvider = lazy(() => import("../../components/PreviewProvider"));
+import { client } from "sanity/sanityClient";
+import Home from "components/Home";
+import HomePreview from "components/homePreview";
 
-// import PreviewProvider from "../../components/PreviewSuspense";
-// import PreviewSuspense from "../../components/PreviewSuspense";
-
-export const revalidate = 60;
+export const revalidate = 172800; // 2 days
 
 const query = groq`*[_type == "post"]{
     ...,
@@ -22,23 +17,10 @@ const HomePage = async () => {
   const posts = await client.fetch(query);
 
   if (isEnabled) {
-    const children = <PreviewBlogList query={query} posts={posts} />;
-    return (
-      <Suspense
-        fallback={
-          <div role="status">
-            <p className="text-center text-lg animate-pulse text-primary ">
-              Loading Preview Data...
-            </p>
-          </div>
-        }
-      >
-        <PreviewProvider>{children}</PreviewProvider>
-      </Suspense>
-    );
+    return <HomePreview posts={posts} query={query} />;
   }
 
-  return <BlogList posts={posts} />;
+  return <Home posts={posts} />;
 };
 
 export default HomePage;

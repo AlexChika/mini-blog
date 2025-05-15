@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import urlFor from "../lib/urlFor";
 
-const Blog = ({ route, post }: { route: string; post: Post }) => {
+const BlogCard = ({ route, post }: { route: string; post: Post }) => {
   return (
     <Link href={route}>
       <article className="group cursor-pointer flex flex-col bg-gray-200 group">
@@ -67,4 +67,4 @@ const Blog = ({ route, post }: { route: string; post: Post }) => {
   );
 };
 
-export default Blog;
+export default BlogCard;

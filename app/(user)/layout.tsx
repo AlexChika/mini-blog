@@ -1,5 +1,5 @@
 import Header from "components/Header";
-import ProjectOverview from "components/project";
+import ProjectOverview from "components/projectOverview";
 import "styles/globals.css";
 
 export const metadata = {

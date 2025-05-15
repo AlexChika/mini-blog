@@ -9,7 +9,7 @@ const Header = () => {
           href="/"
           className="block text-[2rem] md:text-4xl lg:text-5xl w-full lg:w-max italic text-gradient"
         >
-          <span className="justify-between flex w-full gap-2 lg:w-max">
+          <span className="justify-between flex w-full gap-2 lg:w-max font-extrabold">
             Mini Blog <img className="h-full" src="/icon.svg" alt="logo" />
           </span>
         </Link>

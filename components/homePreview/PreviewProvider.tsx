@@ -1,11 +1,8 @@
 "use client";
 
-// once rollup supports "use client" module directive then "next-sanity" will include them and this reexport will no longer be necessary
-
 import { LiveQueryProvider } from "next-sanity/preview";
-// export { PreviewSuspense as default } from "next-sanity/preview";
 
-import { client } from "../lib/sanity.client";
+import { client } from "sanity/sanityClient";
 const _token =
   typeof process === "undefined"
     ? ""

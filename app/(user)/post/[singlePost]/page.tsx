@@ -1,19 +1,19 @@
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
-import { client } from "../../../../lib/sanity.client";
-import PostBanner from "../../../../components/PostBanner";
-import { RichTextComponents } from "../../../../components/RichTextComponent";
-import Blog from "../../../../components/Blog";
-import CommentComponent from "../../../../components/PostComments";
-import PostShare from "../../../../components/PostShare";
+import { client } from "sanity/sanityClient";
+import PostBanner from "components/singlePost/PostBanner";
+import { RichTextComponents } from "components/RichTextComponent";
+import BlogCard from "components/BlogCard";
+import CommentComponent from "components/singlePost/PostComments";
+import PostShare from "components/singlePost/PostShare";
 
 type Props = {
   params: Promise<{
-    slug: string;
+    singlePost: string;
   }>;
 };
 
-export const revalidate = 2 * 24 * 60 * 60; // 2 days
+export const revalidate = 172800; // 2 days
 
 export async function generateStaticParams() {
   const query = groq`*[_type == "post"]{
@@ -23,13 +23,13 @@ export async function generateStaticParams() {
   const slugs: { slug: Slug }[] = await client.fetch(query);
   return slugs.map((slug) => {
     return {
-      slug: slug.slug.current,
+      singlePost: slug.slug.current,
     };
   });
 }
 
 async function Post({ params }: Props) {
-  const { slug } = await params;
+  const { singlePost: slug } = await params;
   const q = groq`
         *[_type == "post" && slug.current == $slug][0]{
             ...,
@@ -83,7 +83,7 @@ async function Post({ params }: Props) {
           {posts.map((post) => {
             return (
               <div className="mb-10" key={post._id}>
-                <Blog route={`/post/${post.slug.current}`} post={post} />
+                <BlogCard route={`/post/${post.slug.current}`} post={post} />
               </div>
             );
           })}

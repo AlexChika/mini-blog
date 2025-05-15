@@ -2,8 +2,8 @@
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 // import {useState,useEffect} from 'react'
-import urlFor from "../lib/urlFor";
-import { RichTextComponents } from "./RichTextComponent";
+import urlFor from "lib/urlFor";
+import { RichTextComponents } from "components/RichTextComponent";
 
 const PostBanner = ({ post }: { post: Post }) => {
   return (

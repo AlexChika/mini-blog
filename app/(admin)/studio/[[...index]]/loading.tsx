@@ -1,8 +1,12 @@
 "use client";
 
-import config from "../../../../sanity.config";
-// import { NextStudioLoading } from 'next-sanity/studio/loading'
+import Spinner from "components/Spinner";
 
 export default function Loading() {
-  return <div>loading...</div>;
+  return (
+    <div>
+      <Spinner sm />
+      <span>loading...</span>
+    </div>
+  );
 }

@@ -1,4 +1,4 @@
-import Blog from "./Blog";
+import BlogCard from "./BlogCard";
 
 type Props = {
   posts: Post[];
@@ -22,7 +22,7 @@ const BlogList = ({ posts }: Props) => {
       <div className="grid grid-cols-1 md:grid-cols-2 px-3 min-[31.25rem]:px-5 sm:px-10 gap-10 gap-y-16 pb-24">
         {posts.map((post: Post) => {
           return (
-            <Blog
+            <BlogCard
               post={post}
               key={post._id}
               route={`/post/${post.slug.current}`}
